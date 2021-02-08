@@ -8,9 +8,9 @@ public class ObjectInstantiator : MonoBehaviour
     [Range(0, 255)]
     public int aplhaPreshow = 130;
     public int rotationOnZAxis = 0;
-    public Action<Transform[,], Vector2Int> objectInstantiated;
 
-    private Transform[,] instantiatedObjects;
+    [HideInInspector]
+    public Transform[,] instantiatedObjects;
     private Transform objectOnPreshow;
 
     public void Start() {
@@ -33,7 +33,6 @@ public class ObjectInstantiator : MonoBehaviour
             Destroy(instantiatedObjects[matrixPosition.x, matrixPosition.y].gameObject);
         instantiatedObjects[matrixPosition.x, matrixPosition.y] = Instantiate(objectToInstantiate, tileTransform.position, Quaternion.identity);
         instantiatedObjects[matrixPosition.x, matrixPosition.y].Rotate(Vector3.forward * rotationOnZAxis);
-        objectInstantiated?.Invoke(instantiatedObjects, matrixPosition);
     }
 
     private void StartPreshowPrefab(Transform tileTransform, Vector2Int matrixPosition) {

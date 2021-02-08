@@ -1,6 +1,7 @@
 ﻿public class StraightRail : Rail {
     public override bool CanMoveDown() {
-        return transform.eulerAngles.z == 90 || transform.eulerAngles.z == 270;
+        return (transform.eulerAngles.z > 80 && transform.eulerAngles.z < 100)
+            || (transform.eulerAngles.z > 260 && transform.eulerAngles.z < 280);
     }
 
     public override bool CanMoveUp() {
@@ -8,7 +9,8 @@
     }
 
     public override bool CanMoveLeft() {
-        return transform.eulerAngles.z == 0 || transform.eulerAngles.z == 180;
+        return (transform.eulerAngles.z > -10 && transform.eulerAngles.z < 10)
+            || (transform.eulerAngles.z > 170 && transform.eulerAngles.z < 190);
     }
 
     public override bool CanMoveRight() {

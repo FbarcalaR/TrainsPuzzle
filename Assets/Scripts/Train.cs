@@ -1,58 +1,74 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Train : MonoBehaviour {
-    public bool CanMove = false;
+    public bool CanMove { get; set; } = false;
     public ObjectInstantiator objectInstantiator;
-    public GridMap grid;
-    public Action<Transform[,], Vector2Int> railInstantiated;
 
-    private bool[,] possibleMoves;
+    private List<Vector2Int> path;
+    private float timer = 0;
+
+
     // Start is called before the first frame update
     void Start() {
-        possibleMoves = new bool[grid.mapSize.x, grid.mapSize.y];
-        objectInstantiator.objectInstantiated += AddRail;
+        path = new List<Vector2Int>();
     }
 
     // Update is called once per frame
     void Update() {
-        if (CanMove) {
+        timer += Time.deltaTime;
+        if (CanMove && timer>=0.5f && path.Count > 0) {
+            var position = path.First();
+            path.RemoveAt(0);
+
+            var newPosition = objectInstantiator.instantiatedObjects[position.x, position.y].transform.position;
+            transform.position = newPosition;
+            timer = 0;
         }
     }
 
-    private void AddRail(Transform[,] railTransform, Vector2Int matrixPosition) {
-        if (!railTransform[matrixPosition.x, matrixPosition.y].TryGetComponent<Rail>(out var rail)) return;
-
-        var railMatrixMovement = rail.GetMovementMatrix();
-        int possibleMovesXPosition = matrixPosition.x - 1;
-        for (int x = 0; x < railMatrixMovement.GetLength(0); x++) {
-            int possibleMovesYPosition = matrixPosition.y - 1;
-            for (int y = 0; y < railMatrixMovement.GetLength(1); y++) {
-                if (IsMatrixPositionInBounds(possibleMovesXPosition, possibleMovesYPosition, possibleMoves)) {
-                    possibleMoves[possibleMovesXPosition, possibleMovesYPosition] =
-                        (possibleMoves[possibleMovesXPosition, possibleMovesYPosition] || railMatrixMovement[x, y])
-                        && railTransform[possibleMovesXPosition, possibleMovesYPosition] != null;
-                }
-                possibleMovesYPosition++;
-            }
-            possibleMovesXPosition++;
+    public void UpdatePath() {
+        var currentPosition = new Vector2Int(0, 4);
+        var currentTransform = objectInstantiator.instantiatedObjects[currentPosition.x, currentPosition.y];
+        while (IsPositionValidForPath(currentTransform)) {
+            path.Add(currentPosition);
+            var nextPosition = GetNextPosition(currentPosition, currentTransform.GetComponent<Rail>());
+            currentPosition = nextPosition.GetValueOrDefault();
+            currentTransform = currentPosition != null ? objectInstantiator.instantiatedObjects[currentPosition.x, currentPosition.y] : null;
         }
-
-        PrintMatrix();
     }
 
-    private void PrintMatrix() {
-        string debugMatrix = "";
-        for (int x = possibleMoves.GetLength(0) - 1; x >= 0; x--) {
-            for (int y = 0; y < possibleMoves.GetLength(1); y++) {
-                debugMatrix += possibleMoves[y, x] + " ";
-            }
-            debugMatrix += "\n";
-        }
-        Debug.Log(debugMatrix);
+    private bool IsPositionValidForPath(Transform currentTransform) {
+        return currentTransform != null
+            && currentTransform.GetComponent<Rail>() != null;
     }
 
-    private bool IsMatrixPositionInBounds(int x, int y, bool[,] matrix) {
+    private Vector2Int? GetNextPosition(Vector2Int currentPosition, Rail rail) {
+        Vector2Int nextPosition = currentPosition;
+        if (DirectionIsValid(currentPosition + Vector2Int.down, rail, r => r.CanMoveDown())) {
+            return currentPosition + Vector2Int.down;
+        }
+        if (DirectionIsValid(currentPosition + Vector2Int.right, rail, r => r.CanMoveRight())) {
+            return currentPosition + Vector2Int.right;
+        }
+        if (DirectionIsValid(currentPosition + Vector2Int.left, rail, r => r.CanMoveLeft())) {
+            return currentPosition + Vector2Int.left;
+        }
+        if (DirectionIsValid(currentPosition + Vector2Int.up, rail, r => r.CanMoveUp())) {
+            return currentPosition + Vector2Int.up;
+        }
+        return null;
+    }
+
+    private bool DirectionIsValid(Vector2Int nextPosition, Rail rail, Func<Rail, bool> p) {
+        return p.Invoke(rail) 
+            && IsMatrixPositionInBounds(nextPosition.x, nextPosition.y, objectInstantiator.instantiatedObjects)
+            && !path.Contains(nextPosition);
+    }
+
+    private bool IsMatrixPositionInBounds(int x, int y, Transform[,] matrix) {
         return x >= 0 && y >= 0 && x < matrix.GetLength(0) && y < matrix.GetLength(1);
     }
 }
