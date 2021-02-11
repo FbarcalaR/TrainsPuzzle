@@ -7,7 +7,10 @@ public class Train : MonoBehaviour {
     public enum outterGridStartingPosition {up, down, left, right}
     public outterGridStartingPosition outPosition;
     public Vector2Int gridStartingPosition;
-    public float trainSpeed = 1.5f;
+    public float linearSpeed = 1.5f;
+    public float turnRadius = 1f;
+    [Range(0, 1)]
+    public float angularSpeedPercentageWhenTurning = 0.6f;
     public ObjectInstantiator objectInstantiator;
 
     private List<PathPositionAngles> path;
@@ -49,8 +52,18 @@ public class Train : MonoBehaviour {
 
             Vector3 targetVelocity = (nextPosition - targetPosition) * 5f;
             targetVelocity.Normalize();
-            rigidbody2d.velocity = targetVelocity * trainSpeed;
-            rigidbody2d.rotation += positionAngles.angles;
+            bool shouldTurn = Math.Abs(positionAngles.angles) > 10;
+            rigidbody2d.velocity = shouldTurn ? 
+                                        targetVelocity * linearSpeed * angularSpeedPercentageWhenTurning :
+                                        targetVelocity * linearSpeed;
+            //rigidbody2d.rotation += positionAngles.angles;
+            if (shouldTurn) {
+                int sign = Math.Sign(positionAngles.angles);
+                float speed = linearSpeed * angularSpeedPercentageWhenTurning;
+                rigidbody2d.angularVelocity = sign*( speed / turnRadius) * 180f / (float)Math.PI;
+            }
+            else
+                rigidbody2d.angularVelocity = 0;
 
             targetPosition = nextPosition;
         }
