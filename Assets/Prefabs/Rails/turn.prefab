@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2075120936940151217}
   - component: {fileID: 7615692453516425603}
   - component: {fileID: 4629989253960211719}
-  m_Layer: 0
+  - component: {fileID: 2474393146972294745}
+  m_Layer: 8
   m_Name: turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,3 +96,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5224a0377010b7a498a6e95f41d84b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!68 &2474393146972294745
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482159344720615634}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.32, y: 0}
+  - {x: -0.16142154, y: -0.0059149936}
+  - {x: -0.04507504, y: -0.054369237}
+  - {x: 0.0059347376, y: -0.168225}
+  - {x: 0.009353071, y: -0.32233796}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
