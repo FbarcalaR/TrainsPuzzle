@@ -8,7 +8,8 @@ public class Tile : MonoBehaviour
 
     [HideInInspector]
     public Vector2Int positionInMatrix;
-    public Action<Transform, Vector2Int> mouseClick;
+    public Action<Transform, Vector2Int> leftMouseClick;
+    public Action<Transform, Vector2Int> rightMouseClick;
     public Action<Transform, Vector2Int> mouseEnter;
     public Action<Transform, Vector2Int> mouseExit;
 
@@ -29,6 +30,12 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        mouseClick?.Invoke(transform, positionInMatrix);
+        leftMouseClick?.Invoke(transform, positionInMatrix);
+    }
+
+    private void OnMouseOver() {
+        if (Input.GetMouseButtonDown(1)) {
+            rightMouseClick?.Invoke(transform, positionInMatrix);
+        }
     }
 }

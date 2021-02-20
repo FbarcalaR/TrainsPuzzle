@@ -1,20 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ObjectInstantiator : MonoBehaviour
-{
+public class ObjectInstantiator : MonoBehaviour {
     public GridMap grid;
     public Transform objectToInstantiate;
     [Range(0, 255)]
     public int aplhaPreshow = 130;
     public int rotationOnZAxis = 0;
+    public int availableStraightRails;
+    public RailsInstantiationRules railsInstantiationRules;
 
     [HideInInspector]
     public Transform[,] instantiatedObjects;
     private Transform objectOnPreshow;
 
     public void Start() {
-        grid.tileClicked += InstantiatePrefab;
+        grid.tileLeftClicked += InstantiatePrefab;
+        grid.tileRightClicked += DestroyPrefab;
         grid.mouseEntersTile += StartPreshowPrefab;
         grid.mouseExitsTile += StopPreshowPrefab;
         instantiatedObjects = new Transform[grid.mapSize.x, grid.mapSize.y];
@@ -29,10 +30,21 @@ public class ObjectInstantiator : MonoBehaviour
     }
 
     private void InstantiatePrefab(Transform tileTransform, Vector2Int matrixPosition) {
-        if (instantiatedObjects[matrixPosition.x, matrixPosition.y] != null) 
+        if (railsInstantiationRules.GetAvailableRails(objectToInstantiate.tag) <= 0) return;
+
+        if (instantiatedObjects[matrixPosition.x, matrixPosition.y] != null) {
+            railsInstantiationRules.RailDeleted(instantiatedObjects[matrixPosition.x, matrixPosition.y].tag);
             Destroy(instantiatedObjects[matrixPosition.x, matrixPosition.y].gameObject);
+        }
         instantiatedObjects[matrixPosition.x, matrixPosition.y] = Instantiate(objectToInstantiate, tileTransform.position, Quaternion.identity);
         instantiatedObjects[matrixPosition.x, matrixPosition.y].Rotate(Vector3.forward * rotationOnZAxis);
+        railsInstantiationRules.RailInstantiated(objectToInstantiate.tag);
+    }
+    private void DestroyPrefab(Transform tileTransform, Vector2Int matrixPosition) {
+        if (instantiatedObjects[matrixPosition.x, matrixPosition.y] == null) return;
+
+        railsInstantiationRules.RailDeleted(instantiatedObjects[matrixPosition.x, matrixPosition.y].tag);
+        Destroy(instantiatedObjects[matrixPosition.x, matrixPosition.y].gameObject);
     }
 
     private void StartPreshowPrefab(Transform tileTransform, Vector2Int matrixPosition) {

@@ -5,7 +5,8 @@ public class GridMap : MonoBehaviour {
     public Transform tilePrefab;
     public Sprite tileSprite;
     public Vector2Int mapSize;
-    public Action<Transform, Vector2Int> tileClicked;
+    public Action<Transform, Vector2Int> tileLeftClicked;
+    public Action<Transform, Vector2Int> tileRightClicked;
     public Action<Transform, Vector2Int> mouseEntersTile;
     public Action<Transform, Vector2Int> mouseExitsTile;
 
@@ -46,13 +47,18 @@ public class GridMap : MonoBehaviour {
         tile.positionInMatrix.x = x;
         tile.positionInMatrix.y = y;
 
-        tile.mouseClick += TileClicked;
+        tile.leftMouseClick += TileLeftClicked;
+        tile.rightMouseClick += TileRightClicked;
         tile.mouseExit += MouseExitsTile;
         tile.mouseEnter += MouseEntersTile;
     }
 
-    private void TileClicked(Transform tileTransform, Vector2Int matrixPosition) {
-        tileClicked?.Invoke(tileTransform, matrixPosition);
+    private void TileLeftClicked(Transform tileTransform, Vector2Int matrixPosition) {
+        tileLeftClicked?.Invoke(tileTransform, matrixPosition);
+    }
+
+    private void TileRightClicked(Transform tileTransform, Vector2Int matrixPosition) {
+        tileRightClicked?.Invoke(tileTransform, matrixPosition);
     }
 
     private void MouseEntersTile(Transform tileTransform, Vector2Int matrixPosition) {
