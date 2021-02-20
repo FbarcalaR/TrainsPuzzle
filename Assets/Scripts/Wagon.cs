@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Wagon : MonoBehaviour {
-
-    public float linearSpeed = 1.5f;
-    public float angularSpeed = 2;
-    [Range(0, 1)]
-    public float angularSpeedPercentageWhenTurning = 0.6f;
     public TrainRay leftRay;
     public TrainRay rightRay;
 
     private Rigidbody2D rigidbody2d;
     private float maxLeftRayDistance;
     private float maxRightRayDistance;
-    public Train train;
 
-    public void Start() {
+    public float LinearSpeed { get; set; }
+    public float AngularSpeed { get; set; }
+    public float AngularSpeedPercentageWhenTurning { get; set; }
+    public Train Train { get; set; }
+    public Color color { get; set; }
+
+    public void Awake() {
         rigidbody2d = GetComponent<Rigidbody2D>();
         leftRay.railHitted += TurnLeft;
         rightRay.railHitted += TurnRight;
@@ -28,22 +25,27 @@ public class Wagon : MonoBehaviour {
         Physics2D.queriesHitTriggers = true;
     }
 
+    public void Start() {
+        if (gameObject.GetComponent<SpriteRenderer>() != null)
+            gameObject.GetComponent<SpriteRenderer>().color = color;
+    }
+
     private void FixedUpdate() {
-        if (train.CanMove) {
-            float turningVelocity = train.IsTurning() ? angularSpeedPercentageWhenTurning : 1;
-            rigidbody2d.MovePosition(rigidbody2d.position + (Vector2)transform.right * Time.fixedDeltaTime * linearSpeed * turningVelocity);
+        if (Train.CanMove) {
+            float turningVelocity = Train.IsTurning() ? AngularSpeedPercentageWhenTurning : 1;
+            rigidbody2d.MovePosition(rigidbody2d.position + (Vector2)transform.right * Time.fixedDeltaTime * LinearSpeed * turningVelocity);
         }
     }
 
     private void TurnLeft(RaycastHit2D rail) {
-        if (train.CanMove) {
-            rigidbody2d.MoveRotation(rigidbody2d.rotation + angularSpeed * Time.fixedDeltaTime / (rail.distance / maxLeftRayDistance));
+        if (Train.CanMove) {
+            rigidbody2d.MoveRotation(rigidbody2d.rotation + AngularSpeed * Time.fixedDeltaTime / (rail.distance / maxLeftRayDistance));
         }
     }
 
     private void TurnRight(RaycastHit2D rail) {
-        if (train.CanMove) {
-            rigidbody2d.MoveRotation(rigidbody2d.rotation - angularSpeed * Time.fixedDeltaTime / (rail.distance / maxRightRayDistance));
+        if (Train.CanMove) {
+            rigidbody2d.MoveRotation(rigidbody2d.rotation - AngularSpeed * Time.fixedDeltaTime / (rail.distance / maxRightRayDistance));
         }
     }
 }

@@ -2529,6 +2529,7 @@ GameObject:
   - component: {fileID: 1354683829}
   - component: {fileID: 1354683832}
   - component: {fileID: 1354683831}
+  - component: {fileID: 1354683833}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -2620,8 +2621,7 @@ MonoBehaviour:
   angularSpeedPercentageWhenTurning: 0.5
   leftRay: {fileID: 698306922}
   rightRay: {fileID: 100297735}
-  numberOfWagons: 15
-  wagonPrefab: {fileID: 7430103011002840390, guid: 06df459ae839113449b9fe949b6c4654, type: 3}
+  rigidbody2d: {fileID: 0}
 --- !u!50 &1354683832
 Rigidbody2D:
   serializedVersion: 4
@@ -2643,6 +2643,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1354683833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354683828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc479bbd39971264d837ba7eb72f48a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfWagons: 10
+  train: {fileID: 1354683831}
+  wagonPrefab: {fileID: 7430103011002840390, guid: 06df459ae839113449b9fe949b6c4654, type: 3}
+  distanceBetweenWagons: {x: -0.5, y: -0, z: -0}
+  offsetFromTrain: {x: -0.2, y: -0, z: -0}
 --- !u!1 &1408458930
 GameObject:
   m_ObjectHideFlags: 0

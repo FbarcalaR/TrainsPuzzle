@@ -8,10 +8,10 @@ public class Train : MonoBehaviour {
     public float angularSpeedPercentageWhenTurning = 0.6f;
     public TrainRay leftRay;
     public TrainRay rightRay;
-    public int numberOfWagons;
-    public GameObject wagonPrefab;
 
-    private Rigidbody2D rigidbody2d;
+    [HideInInspector]
+    public Rigidbody2D rigidbody2d;
+
     private float maxLeftRayDistance;
     private float maxRightRayDistance;
     private bool isTurningLeft = false;
@@ -19,7 +19,7 @@ public class Train : MonoBehaviour {
 
     public bool CanMove { get; set; }
 
-    public void Start() {
+    public void Awake() {
         rigidbody2d = GetComponent<Rigidbody2D>();
         leftRay.railHitted += TurnLeft;
         rightRay.railHitted += TurnRight;
@@ -30,7 +30,6 @@ public class Train : MonoBehaviour {
 
         Physics2D.queriesStartInColliders = false;
         Physics2D.queriesHitTriggers = true;
-        InstanciateWagons();
     }
 
 
@@ -38,22 +37,6 @@ public class Train : MonoBehaviour {
         if (CanMove) {
             float turningVelocity = IsTurning() ? angularSpeedPercentageWhenTurning : 1;
             rigidbody2d.MovePosition(rigidbody2d.position + (Vector2)transform.right * Time.fixedDeltaTime * linearSpeed * turningVelocity);
-        }
-    }
-
-    private void InstanciateWagons() {
-        var offset = Vector3.right * -0.5f;
-        var nextRbToAttach = rigidbody2d;
-
-        for (int i = 1; i <= numberOfWagons; i++) {
-            var newGameObject = Instantiate(wagonPrefab, transform.position + offset * i, Quaternion.identity);
-            var newWagon = newGameObject.GetComponent<Wagon>();
-            newWagon.linearSpeed = this.linearSpeed;
-            newWagon.angularSpeed = this.angularSpeed;
-            newWagon.angularSpeedPercentageWhenTurning = this.angularSpeedPercentageWhenTurning;
-            newWagon.train = this;
-            newGameObject.GetComponent<DistanceJoint2D>().connectedBody = nextRbToAttach;
-            nextRbToAttach = newGameObject.GetComponent<Rigidbody2D>();
         }
     }
 
