@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Train : MonoBehaviour {
 
@@ -8,6 +9,10 @@ public class Train : MonoBehaviour {
     public float angularSpeedPercentageWhenTurning = 0.6f;
     public TrainRay leftRay;
     public TrainRay rightRay;
+    public TrainOnRailRayCheck trainOnRailRayCheck;
+    public Action trainsCollided;
+    public Action trainOutOfRails;
+    public Action trainInTarget;
 
     [HideInInspector]
     public Rigidbody2D rigidbody2d;
@@ -23,6 +28,7 @@ public class Train : MonoBehaviour {
         rigidbody2d = GetComponent<Rigidbody2D>();
         leftRay.railHitted += TurnLeft;
         rightRay.railHitted += TurnRight;
+        trainOnRailRayCheck.railNotHitted += TrainIsOutOfRails;
         leftRay.railNotHitted += () => isTurningLeft = false;
         rightRay.railNotHitted += () => isTurningRight = false;
         maxLeftRayDistance = leftRay.maxRaycastDistance;
@@ -31,7 +37,6 @@ public class Train : MonoBehaviour {
         Physics2D.queriesStartInColliders = false;
         Physics2D.queriesHitTriggers = true;
     }
-
 
     private void FixedUpdate() {
         if (CanMove) {
@@ -42,6 +47,26 @@ public class Train : MonoBehaviour {
 
     public bool IsTurning() {
         return isTurningLeft || isTurningRight;
+    }
+
+    public void SetTrainAsInTarget() {
+        CanMove = false;
+        trainInTarget?.Invoke();
+    }
+
+    private void TrainIsOutOfRails() {
+        CanMove = false;
+        trainOutOfRails?.Invoke();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        collision.gameObject.TryGetComponent<Wagon>(out var wagon);
+        if (wagon?.Train == this) return;
+
+        if (collision.gameObject.layer == gameObject.layer) {
+            CanMove = false;
+            trainsCollided?.Invoke();
+        }
     }
 
     private void TurnLeft(RaycastHit2D rail) {
