@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 public class Wagon : MonoBehaviour {
-    public TrainRay leftRay;
-    public TrainRay rightRay;
+    public RailFollowRay leftRay;
+    public RailFollowRay rightRay;
 
     private Rigidbody2D rigidbody2d;
     private float maxLeftRayDistance;

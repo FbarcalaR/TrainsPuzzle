@@ -7,8 +7,8 @@ public class Train : MonoBehaviour {
     public float angularSpeed = 2;
     [Range(0, 1)]
     public float angularSpeedPercentageWhenTurning = 0.6f;
-    public TrainRay leftRay;
-    public TrainRay rightRay;
+    public RailFollowRay leftRay;
+    public RailFollowRay rightRay;
     public TrainOnRailRayCheck trainOnRailRayCheck;
     public Action trainsCollided;
     public Action trainOutOfRails;

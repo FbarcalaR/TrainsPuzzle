@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class TrainRay : MonoBehaviour {
+public class RailFollowRay : MonoBehaviour {
 
     public LayerMask interactionMask;
     public float maxRaycastDistance = 3;

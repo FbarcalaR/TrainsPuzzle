@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AvailableRailsDisplayer : MonoBehaviour
 {
-    public RailsInstantiationRules railsInstantiationRules;
+    public RailInstantiationRules railsInstantiationRules;
     public Transform railPrefabToDisplay;
     public TextMeshProUGUI text;
 

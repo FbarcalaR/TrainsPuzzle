@@ -7,7 +7,7 @@ public class ObjectInstantiator : MonoBehaviour {
     public int aplhaPreshow = 130;
     public int rotationOnZAxis = 0;
     public int availableStraightRails;
-    public RailsInstantiationRules railsInstantiationRules;
+    public RailInstantiationRules railsInstantiationRules;
 
     [HideInInspector]
     public Transform[,] instantiatedObjects;
