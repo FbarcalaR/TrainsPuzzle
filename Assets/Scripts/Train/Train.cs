@@ -7,6 +7,7 @@ public class Train : MonoBehaviour {
     public float angularSpeed = 2;
     [Range(0, 1)]
     public float angularSpeedPercentageWhenTurning = 0.6f;
+    public bool moveOnAwake = false;
     public RailFollowRay leftRay;
     public RailFollowRay rightRay;
     public TrainOnRailRayCheck trainOnRailRayCheck;
@@ -26,6 +27,7 @@ public class Train : MonoBehaviour {
 
     public void Awake() {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        CanMove = moveOnAwake;
         leftRay.railHitted += TurnLeft;
         rightRay.railHitted += TurnRight;
         trainOnRailRayCheck.railNotHitted += TrainIsOutOfRails;

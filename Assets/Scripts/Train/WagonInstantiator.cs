@@ -6,6 +6,7 @@ public class WagonInstantiator : MonoBehaviour {
     public GameObject wagonPrefab;
     public Vector3 distanceBetweenWagons = Vector3.right * -0.5f;
     public Vector3 offsetFromTrain = Vector3.right * -0.2f;
+    public Vector3 offsetAngle = Vector3.zero;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class WagonInstantiator : MonoBehaviour {
 
         for (int i = 1; i <= numberOfWagons; i++) {
             var instantiationPosition = transform.position + offsetFromTrain + distanceBetweenWagons * i;
-            var newGameObject = Instantiate(wagonPrefab, instantiationPosition, Quaternion.identity);
+            var newGameObject = Instantiate(wagonPrefab, instantiationPosition, Quaternion.Euler(offsetAngle));
             SetWagonProperties(newGameObject, nextRbToAttach);
 
             nextRbToAttach = newGameObject.GetComponent<Rigidbody2D>();
