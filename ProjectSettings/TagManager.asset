@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Straight
   - Turn
+  - Double-Turn
+  - Straight-Turn
   layers:
   - Default
   - TransparentFX

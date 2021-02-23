@@ -391,6 +391,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 446079848750809034, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
   m_PrefabInstance: {fileID: 446079849085547104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &774964155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4468857526623904401, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+  m_PrefabInstance: {fileID: 446079849085547104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3791ba5b5e72e4fb616491620d95f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &919391048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -769,11 +780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635093487014842106, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
       propertyPath: linearSpeed
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7635093487014842106, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
       propertyPath: angularSpeed
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7635093487014842107, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1049,33 +1060,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1453956619}
-    - target: {fileID: 446079848750809035, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
-      propertyPath: m_Color.r
-      value: 0.44313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 446079848750809035, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
-      propertyPath: m_Color.g
-      value: 0.22352941
-      objectReference: {fileID: 0}
-    - target: {fileID: 446079848750809035, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
-      propertyPath: m_Color.b
-      value: 0.07058824
-      objectReference: {fileID: 0}
     - target: {fileID: 446079848754292804, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: railsInstantiationRules
       value: 
       objectReference: {fileID: 1006283389}
+    - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 84663252}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Train, Assembly-CSharp
+      value: SetSwitchRailsActive, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
@@ -1084,10 +1087,10 @@ PrefabInstance:
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1622408589}
+      objectReference: {fileID: 774964155}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: set_CanMove
+      value: SwitchOnAllRails
       objectReference: {fileID: 0}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1095,7 +1098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 446079848813795727, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446079848994659979, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_Name
@@ -1205,6 +1208,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1453956619}
+    - target: {fileID: 613450058582485403, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: railsInstantiationRules
+      value: 
+      objectReference: {fileID: 1006283389}
+    - target: {fileID: 3267559905662091679, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: railsInstantiationRules
+      value: 
+      objectReference: {fileID: 1006283389}
+    - target: {fileID: 6494755263436874267, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1006283387}
+    - target: {fileID: 8436785207388262997, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1006283387}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
 --- !u!1001 &4486225867911335748
@@ -1548,13 +1567,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
+      propertyPath: availableRails.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
       propertyPath: availableRails.Array.data[0].availableRails
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
       propertyPath: availableRails.Array.data[1].availableRails
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
+      propertyPath: availableRails.Array.data[2].railPrefab
+      value: 
+      objectReference: {fileID: 2075120936940151217, guid: a9955bd51029c0644b2fdb46487710b3, type: 3}
+    - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
+      propertyPath: availableRails.Array.data[2].availableRails
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
+      propertyPath: availableRails.Array.data[3].railPrefab
+      value: 
+      objectReference: {fileID: 2075120936940151217, guid: b6428f38a91ee134189c505195333d4f, type: 3}
+    - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
+      propertyPath: availableRails.Array.data[3].availableRails
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234016839022180833, guid: c121b093646f6564daaca2df321e79c0, type: 3}
+      propertyPath: availableRails.Array.data[1].railPrefab
+      value: 
+      objectReference: {fileID: 2075120936940151217, guid: 910c90fec70b8d74c95c0b4ab60521b6, type: 3}
     - target: {fileID: 7234016839022180838, guid: c121b093646f6564daaca2df321e79c0, type: 3}
       propertyPath: m_Name
       value: RailsInstantiator
@@ -1636,6 +1679,14 @@ PrefabInstance:
     - target: {fileID: 7635093487014842105, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
       propertyPath: m_Name
       value: Train
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635093487014842106, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
+      propertyPath: linearSpeed
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635093487014842106, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
+      propertyPath: angularSpeed
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7635093487014842107, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
       propertyPath: m_LocalPosition.x
