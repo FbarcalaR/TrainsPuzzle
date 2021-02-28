@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7604969761851981307, guid: 3fde958103394154c8577728aeb4aaf0, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7604969761851981307, guid: 3fde958103394154c8577728aeb4aaf0, type: 3}
       propertyPath: m_Colors.m_ColorMultiplier
@@ -1541,7 +1541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7604969761851981307, guid: 3fde958103394154c8577728aeb4aaf0, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7604969761851981307, guid: 3fde958103394154c8577728aeb4aaf0, type: 3}
       propertyPath: m_Colors.m_NormalColor.r
