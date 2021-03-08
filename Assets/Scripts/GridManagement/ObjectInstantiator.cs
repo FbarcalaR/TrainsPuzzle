@@ -14,8 +14,8 @@ public class ObjectInstantiator : MonoBehaviour {
     private Transform objectOnPreshow;
 
     public void Start() {
-        grid.tileLeftClicked += InstantiatePrefab;
-        grid.tileRightClicked += DestroyPrefab;
+        grid.tileMouseLeftClicked += InstantiatePrefab;
+        grid.tileMouseRightClicked += DestroyPrefab;
         grid.mouseEntersTile += StartPreshowPrefab;
         grid.mouseExitsTile += StopPreshowPrefab;
         instantiatedObjects = new Transform[grid.mapSize.x, grid.mapSize.y];

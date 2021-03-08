@@ -835,6 +835,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Train
       objectReference: {fileID: 0}
+    - target: {fileID: 7635093487014842106, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
+      propertyPath: linearSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635093487014842106, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
+      propertyPath: angularSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7635093487014842107, guid: 674ec1580d606594ea4e9d3b1cc640ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.917

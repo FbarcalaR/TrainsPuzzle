@@ -169,17 +169,14 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.31810892, y: -0.0037920354}
-  - {x: -0.16330938, y: -0.0002514287}
-  - {x: -0.045075037, y: 0.0022661558}
-  - {x: 0.08711197, y: 0.0035686195}
-  - {x: 0.3321741, y: 0.00614658}
+  - {x: -0.3520934, y: 0.0000000038417056}
+  - {x: 0.35586908, y: -0.000000004307367}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -283,11 +280,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.32, y: 0}
+  - {x: -0.34454194, y: -0.005663529}
   - {x: -0.16142154, y: -0.0059149936}
   - {x: -0.04507504, y: -0.054369237}
-  - {x: 0.0040468182, y: -0.168225}
-  - {x: 0.005577361, y: -0.3204501}
+  - {x: 0.00027117226, y: -0.168225}
+  - {x: -0.00008613989, y: -0.35820696}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

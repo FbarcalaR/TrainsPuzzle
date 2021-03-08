@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class GridMap : MonoBehaviour {
     public Transform tilePrefab;
     public Sprite tileSprite;
     public Vector2Int mapSize;
-    public Action<Transform, Vector2Int> tileLeftClicked;
-    public Action<Transform, Vector2Int> tileRightClicked;
+    public Vector2Int[] unabledTilesPositions;
+    public Action<Transform, Vector2Int> tileMouseLeftClicked;
+    public Action<Transform, Vector2Int> tileMouseRightClicked;
     public Action<Transform, Vector2Int> mouseEntersTile;
     public Action<Transform, Vector2Int> mouseExitsTile;
 
@@ -39,6 +41,8 @@ public class GridMap : MonoBehaviour {
     }
 
     private void CreateNewTile(Transform mapHolder, Vector3 tilePosition, int x, int y) {
+        if (unabledTilesPositions.Any(pos => pos.x == x && pos.y == y)) return;
+
         Transform newTileTransform = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
         newTileTransform.localScale = Vector3.one * (1 - outlinePercent);
         newTileTransform.parent = mapHolder;
@@ -54,11 +58,11 @@ public class GridMap : MonoBehaviour {
     }
 
     private void TileLeftClicked(Transform tileTransform, Vector2Int matrixPosition) {
-        tileLeftClicked?.Invoke(tileTransform, matrixPosition);
+        tileMouseLeftClicked?.Invoke(tileTransform, matrixPosition);
     }
 
     private void TileRightClicked(Transform tileTransform, Vector2Int matrixPosition) {
-        tileRightClicked?.Invoke(tileTransform, matrixPosition);
+        tileMouseRightClicked?.Invoke(tileTransform, matrixPosition);
     }
 
     private void MouseEntersTile(Transform tileTransform, Vector2Int matrixPosition) {

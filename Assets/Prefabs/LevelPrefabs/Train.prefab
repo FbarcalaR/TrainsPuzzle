@@ -289,8 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d80cbbb1f65f94f97d57a3b69b0f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearSpeed: 0.7
-  angularSpeed: 70
+  linearSpeed: 0.8
+  angularSpeed: 80
   angularSpeedPercentageWhenTurning: 0.5
   moveOnAwake: 0
   leftRay: {fileID: 7635093485284657703}
