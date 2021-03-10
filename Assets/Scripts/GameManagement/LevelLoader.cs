@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour {
+public class LevelLoader: MonoBehaviour {
+    public static Action beginSceneReload;
 
-    public void LoadScene(int sceneNumber) {
+    public static void LoadScene(int sceneNumber) {
         SceneManager.LoadScene(sceneNumber);
     }
 
-    public void ReloadScene() {
+    public static void ReloadScene() {
+        beginSceneReload?.Invoke();
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.buildIndex);
     }

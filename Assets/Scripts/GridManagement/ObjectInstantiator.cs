@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ObjectInstantiator : MonoBehaviour {
     public GridMap grid;
@@ -8,6 +9,7 @@ public class ObjectInstantiator : MonoBehaviour {
     public int rotationOnZAxis = 0;
     public int availableStraightRails;
     public RailInstantiationRules railsInstantiationRules;
+    public Action<ObjectInstantiator> instantiated;
 
     [HideInInspector]
     public Transform[,] instantiatedObjects;
@@ -19,6 +21,7 @@ public class ObjectInstantiator : MonoBehaviour {
         grid.mouseEntersTile += StartPreshowPrefab;
         grid.mouseExitsTile += StopPreshowPrefab;
         instantiatedObjects = new Transform[grid.mapSize.x, grid.mapSize.y];
+        instantiated?.Invoke(this);
     }
 
     public void SelectObjectToInstantiate(Transform objectToInstantiate) {
@@ -29,7 +32,7 @@ public class ObjectInstantiator : MonoBehaviour {
         rotationOnZAxis += eulerAngles;
     }
 
-    private void InstantiatePrefab(Transform tileTransform, Vector2Int matrixPosition) {
+    public void InstantiatePrefab(Transform tileTransform, Vector2Int matrixPosition) {
         if (railsInstantiationRules.GetAvailableRails(objectToInstantiate.tag) <= 0) return;
 
         if (instantiatedObjects[matrixPosition.x, matrixPosition.y] != null) {
