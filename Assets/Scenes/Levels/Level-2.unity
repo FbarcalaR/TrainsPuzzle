@@ -1283,6 +1283,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2947013466554852119, guid: 6ef376385bb8acf47b9dded0ea28bddb, type: 3}
+      propertyPath: m_orthographicSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659533829650937896, guid: 6ef376385bb8acf47b9dded0ea28bddb, type: 3}
+      propertyPath: orthographic size
+      value: 2.2731483
+      objectReference: {fileID: 0}
     - target: {fileID: 4659533829650937899, guid: 6ef376385bb8acf47b9dded0ea28bddb, type: 3}
       propertyPath: m_Name
       value: Level Camera
