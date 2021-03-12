@@ -14,4 +14,12 @@ public class LevelLoader: MonoBehaviour {
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.buildIndex);
     }
+
+    public void ExitGame() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+    }
 }

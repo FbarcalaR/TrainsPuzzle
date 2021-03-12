@@ -1251,6 +1251,14 @@ PrefabInstance:
       propertyPath: railsInstantiationRules
       value: 
       objectReference: {fileID: 1006283389}
+    - target: {fileID: 5734072334900357792, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1453956619}
+    - target: {fileID: 5734072334900357792, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     - target: {fileID: 6494755263436874267, guid: 16c8c1bc8fd6c64438f276f7677eaf08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
