@@ -18,15 +18,25 @@ public class Train : MonoBehaviour {
     [HideInInspector]
     public Rigidbody2D rigidbody2d;
 
+    private ParticleSystem Smoke;
     private float maxLeftRayDistance;
     private float maxRightRayDistance;
     private bool isTurningLeft = false;
     private bool isTurningRight = false;
+    private bool canMove;
 
-    public bool CanMove { get; set; }
+    public bool CanMove {
+        get => canMove;
+        set {
+            canMove = value;
+            if (Smoke != null && canMove)
+                Smoke.Play();
+        }
+    }
 
     public void Awake() {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        Smoke = GetComponentInChildren<ParticleSystem>();
         CanMove = moveOnAwake;
         leftRay.railHitted += TurnLeft;
         rightRay.railHitted += TurnRight;
