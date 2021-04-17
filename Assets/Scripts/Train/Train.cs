@@ -14,6 +14,8 @@ public class Train : MonoBehaviour {
     public Action trainsCollided;
     public Action trainOutOfRails;
     public Action trainInTarget;
+    public AudioSource trainHiss;
+    public AudioSource trainMoving;
 
     [HideInInspector]
     public Rigidbody2D rigidbody2d;
@@ -29,8 +31,16 @@ public class Train : MonoBehaviour {
         get => canMove;
         set {
             canMove = value;
-            if (Smoke != null && canMove)
+            if (canMove) {
                 Smoke.Play();
+                trainHiss.Play();
+                trainMoving.Play();
+            }
+            else {
+                Smoke.Stop();
+                trainHiss.Stop();
+                trainMoving.Stop();
+            }
         }
     }
 
